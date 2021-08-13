@@ -2,6 +2,7 @@ FlapPyBird
 ===============
 
 A Flappy Bird Clone made using [python-pygame][pygame]
+Cloned from https://github.com/sourabhv/FlapPyBird
 
 How-to (as tested on MacOS)
 ---------------------------
@@ -15,7 +16,7 @@ How-to (as tested on MacOS)
 1. Clone the repository:
 
    ```bash
-   $ git clone https://github.com/sourabhv/FlapPyBird
+   $ git clone https://github.com/pankajkgupta/LOUDy-Bird.git
    ```
 
    or download as zip and extract.
