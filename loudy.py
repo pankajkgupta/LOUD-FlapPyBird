@@ -275,9 +275,9 @@ def mainGame(movementInfo):
         loopIter = (loopIter + 1) % 30
         basex = -((-basex + 100) % baseShift)
 
-        # rotate the player
-        if playerRot > -90:
-            playerRot -= playerVelRot
+        # rotate the player (disable for loudy bird)
+        # if playerRot > -90:
+        #     playerRot -= playerVelRot
 
         # player's movement
         if playerVelY < playerMaxVelY and not playerFlapped:
