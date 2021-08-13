@@ -4,15 +4,18 @@ import sys
 
 import pygame
 from pygame.locals import *
+from pyaudio import PyAudio, paInt16
+import struct
+import time
 
-
-FPS = 50
+FPS = 30
 SCREENWIDTH  = 288
 SCREENHEIGHT = 712
 PIPEGAPSIZE  = 200 # gap between upper and lower part of pipe
 BASEY        = SCREENHEIGHT * 0.79
 # image, sound and hitmask  dicts
 IMAGES, SOUNDS, HITMASKS = {}, {}, {}
+PYAUDIO_NUM_SAMPLES = 2048
 
 # list of all possible players (tuple of 3 positions of flap)
 PLAYERS_LIST = (
@@ -54,6 +57,10 @@ try:
 except NameError:
     xrange = range
 
+##################
+pa = PyAudio()
+sampling_rate = int(pa.get_device_info_by_index(0)['defaultSampleRate'])
+au_stream = pa.open(format=paInt16, channels=1, rate=sampling_rate, input=True, frames_per_buffer=PYAUDIO_NUM_SAMPLES)
 
 def main():
     global SCREEN, FPSCLOCK
@@ -224,7 +231,10 @@ def mainGame(movementInfo):
     playerFlapAcc =  -9   # players speed on flapping
     playerFlapped = False # True when player flaps
 
-
+    ###############
+    string_audio_data = au_stream.read(PYAUDIO_NUM_SAMPLES)
+    base_volume = max(struct.unpack('2048h', string_audio_data))
+    ###########
     while True:
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
@@ -235,7 +245,7 @@ def mainGame(movementInfo):
                     playerVelY = playerFlapAcc
                     playerFlapped = True
                     SOUNDS['wing'].play()
-
+        
         # check for crash here
         crashTest = checkCrash({'x': playerx, 'y': playery, 'index': playerIndex},
                                upperPipes, lowerPipes)
@@ -279,7 +289,12 @@ def mainGame(movementInfo):
             playerRot = 45
 
         playerHeight = IMAGES['player'][playerIndex].get_height()
-        playery += min(playerVelY, BASEY - playery - playerHeight)
+        
+        string_audio_data = au_stream.read(PYAUDIO_NUM_SAMPLES)
+        volume = max(struct.unpack('2048h', string_audio_data))
+        print(volume)
+        # playery += min(playerVelY, BASEY - playery - playerHeight)
+        playery += (volume - base_volume)/base_volume
 
         # move pipes to left
         for uPipe, lPipe in zip(upperPipes, lowerPipes):
