@@ -25,7 +25,7 @@ How-to (as tested on MacOS)
 
    ```bash
    $ pipenv install
-   $ pipenv run python flappy.py
+   $ pipenv run python loudy.py
    ```
 
 1. Use <kbd>&uarr;</kbd> or <kbd>Space</kbd> key to play and <kbd>Esc</kbd> to close the game.
