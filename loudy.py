@@ -4,7 +4,7 @@ import sys
 
 import pygame
 from pygame.locals import *
-from pyaudio import PyAudio, paInt16
+from pyaudio import PyAudio, paInt16, paFloat32
 import struct
 import time
 
@@ -15,7 +15,7 @@ PIPEGAPSIZE  = 200 # gap between upper and lower part of pipe
 BASEY        = SCREENHEIGHT * 0.79
 # image, sound and hitmask  dicts
 IMAGES, SOUNDS, HITMASKS = {}, {}, {}
-PYAUDIO_NUM_SAMPLES = 2048
+PYAUDIO_NUM_SAMPLES = 4096
 
 # list of all possible players (tuple of 3 positions of flap)
 PLAYERS_LIST = (
@@ -60,7 +60,8 @@ except NameError:
 ##################
 pa = PyAudio()
 sampling_rate = int(pa.get_device_info_by_index(0)['defaultSampleRate'])
-au_stream = pa.open(format=paInt16, channels=1, rate=sampling_rate, input=True, frames_per_buffer=PYAUDIO_NUM_SAMPLES)
+print(sampling_rate)
+au_stream = pa.open(format=paFloat32, channels=1, rate=sampling_rate, input=True, frames_per_buffer=PYAUDIO_NUM_SAMPLES)
 
 def main():
     global SCREEN, FPSCLOCK
@@ -233,7 +234,7 @@ def mainGame(movementInfo):
 
     ###############
     string_audio_data = au_stream.read(PYAUDIO_NUM_SAMPLES)
-    base_volume = max(struct.unpack('2048h', string_audio_data))
+    base_volume = max(struct.unpack('8192h', string_audio_data))
     ###########
     while True:
         for event in pygame.event.get():
@@ -291,10 +292,10 @@ def mainGame(movementInfo):
         playerHeight = IMAGES['player'][playerIndex].get_height()
         
         string_audio_data = au_stream.read(PYAUDIO_NUM_SAMPLES)
-        volume = max(struct.unpack('2048h', string_audio_data))
+        volume = max(struct.unpack('8192h', string_audio_data))
         print(volume)
         # playery += min(playerVelY, BASEY - playery - playerHeight)
-        playery += (volume - base_volume)/base_volume
+        playery -= (volume - base_volume)/base_volume
 
         # move pipes to left
         for uPipe, lPipe in zip(upperPipes, lowerPipes):
