@@ -6,7 +6,7 @@ LOUDy Bird
 ![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/56ca6f32113f28634431f4b2bd7310694dda04f2/gallery1.jpg?raw=true)
 
 
-![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/56ca6f32113f28634431f4b2bd7310694dda04f2/gallery2.jpg?raw=true)
+![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/a39f85e360fccd069c4094f0226878880e19aa32/gallery2.jpg?raw=true)
 
 
 ![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/56ca6f32113f28634431f4b2bd7310694dda04f2/gallery3.jpg?raw=true)
