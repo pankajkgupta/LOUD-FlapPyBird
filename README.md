@@ -6,11 +6,15 @@ LOUDy Bird
 ![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/86017077bda4439b5ee02369b068e083b2d69070/gallery.png)
 
 
-[![LOUDy Bird](https://img.youtube.com/vi/y6dyMCsVJRw/0.jpg)](https://youtu.be/y6dyMCsVJRw)
 
 
 A Flappy Bird Clone made using [python-pygame][pygame]
 Cloned from https://github.com/sourabhv/FlapPyBird
+
+
+[![LOUDy Bird](https://img.youtube.com/vi/y6dyMCsVJRw/0.jpg)](https://youtu.be/y6dyMCsVJRw)
+
+
 
 How-to
 ---------------------------
