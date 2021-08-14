@@ -15,7 +15,7 @@ PIPEGAPSIZE  = 175 # gap between upper and lower part of pipe
 BASEY        = SCREENHEIGHT * 0.79
 # image, sound and hitmask  dicts
 IMAGES, SOUNDS, HITMASKS = {}, {}, {}
-PYAUDIO_NUM_SAMPLES = 2048
+PYAUDIO_NUM_SAMPLES = 4096
 
 # list of all possible players (tuple of 3 positions of flap)
 PLAYERS_LIST = (
@@ -291,13 +291,17 @@ def mainGame(movementInfo):
         playerHeight = IMAGES['player'][playerIndex].get_height()
 
         string_audio_data = au_stream.read(PYAUDIO_NUM_SAMPLES)
-        volume = max(struct.unpack('2048h', string_audio_data))
-        print(volume)
+        data = np.array(struct.unpack('4096h', string_audio_data))
+        volume = max(data)
+        f = maxFreq(data)
+
+        print(playery, f)
+        playery -= int((f - 50)/50)
         # playery += min(playerVelY, BASEY - playery - playerHeight)
-        if volume<base_volume:
-            playery -= 5*(volume - base_volume)/base_volume
-        else:
-            playery -= 0.6*(volume - base_volume)/base_volume
+        # if volume<base_volume:
+        #     playery -= 5*(volume - base_volume)/base_volume
+        # else:
+        #     playery -= 0.6*(volume - base_volume)/base_volume
         # move pipes to left
         for uPipe, lPipe in zip(upperPipes, lowerPipes):
             uPipe['x'] += pipeVelX
@@ -499,6 +503,28 @@ def getHitmask(image):
         for y in xrange(image.get_height()):
             mask[x].append(bool(image.get_at((x,y))[3]))
     return mask
+
+import numpy as np
+def getAmp(data):
+    data = np.array(data)
+    data = data - np.mean(data)
+    rms_data = np.sqrt(np.mean(np.power(data,2)))
+    return rms_data
+
+from scipy.fft import fft, fftfreq
+from scipy.signal import hann
+
+def maxFreq(data, Fs=44100, Low_cutoff = 80, High_cutoff= 300):
+    T = 1/Fs
+    N = data.shape[0]
+    Sf = np.abs(fft(data))
+    Sf = Sf[:N//2]
+    fr = fftfreq(N, T)[:N//2]
+    idx = (fr >= Low_cutoff) & (fr <= High_cutoff)
+    fr_idx = fr[idx]
+    max_idx = np.where(Sf[idx] == np.max(Sf[idx]))
+    max_freq = fr_idx[max_idx]
+    return max_freq
 
 if __name__ == '__main__':
     main()
