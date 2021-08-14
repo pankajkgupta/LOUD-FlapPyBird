@@ -3,7 +3,7 @@ LOUDy Bird
 ![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/60fe2e8b17aad0006902c5d04ba6f6b9253bd7ac/header.png?raw=true)
 
 
-![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/1e1655d6dd9d6f2380591caddab6111aed3521e4/gallery.png)
+![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/86017077bda4439b5ee02369b068e083b2d69070/gallery.png)
 
 
 A Flappy Bird Clone made using [python-pygame][pygame]
