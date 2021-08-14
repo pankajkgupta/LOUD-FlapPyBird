@@ -8,11 +8,14 @@ LOUDy Bird
 
 
 
+
 A Flappy Bird Clone made using [python-pygame][pygame]
 Cloned from https://github.com/sourabhv/FlapPyBird
 
 
-[![LOUDy Bird](https://img.youtube.com/vi/y6dyMCsVJRw/0.jpg)](https://youtu.be/y6dyMCsVJRw)
+
+
+[![LOUDy Bird](https://img.youtube.com/vi/y6dyMCsVJRw/0.jpg)](https://www.youtube.com/watch?v=y6dyMCsVJRw)
 
 
 
