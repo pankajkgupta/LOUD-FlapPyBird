@@ -14,6 +14,7 @@ Cloned from https://github.com/sourabhv/FlapPyBird
 
 
 
+Click this to watch overview and demo of the app
 
 [![LOUDy Bird](https://img.youtube.com/vi/y6dyMCsVJRw/0.jpg)](https://www.youtube.com/watch?v=y6dyMCsVJRw)
 
