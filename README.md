@@ -3,7 +3,7 @@ LOUDy Bird
 ![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/60fe2e8b17aad0006902c5d04ba6f6b9253bd7ac/header.png?raw=true)
 
 
-![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/86017077bda4439b5ee02369b068e083b2d69070/gallery.png)
+![LOUDy Bird](https://github.com/pankajkgupta/LOUDy-Bird/blob/d1d64ea3545ffaddc38bdb1acda902dc77602421/gallery.png)
 
 
 
